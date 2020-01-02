@@ -27,20 +27,20 @@ lazy val baseSettings: Seq[Setting[_]] = Seq(
   )
 )
 
-lazy val foundation = project
+lazy val async = project
   .in(file("."))
-  .settings(moduleName := "foundation")
+  .settings(moduleName := "async")
   .settings(baseSettings: _*)
   .aggregate(exercises, slides)
   .dependsOn(exercises, slides)
 
 lazy val exercises = project
-  .settings(moduleName := "foundation-exercises")
+  .settings(moduleName := "async-exercises")
   .settings(baseSettings: _*)
 
 lazy val slides = project
   .dependsOn(exercises)
-  .settings(moduleName := "foundation-slides")
+  .settings(moduleName := "async-slides")
   .settings(baseSettings: _*)
   .settings(
     tutSourceDirectory := baseDirectory.value / "tut",
@@ -51,7 +51,4 @@ lazy val slides = project
 
 addCommandAlias("testAnswers", "testOnly *AnswersTest")
 
-addCommandAlias("testExercises1", "testOnly function.*ExercisesTest")
-addCommandAlias("testExercises2", "testOnly sideeffect.*ExercisesTest")
-addCommandAlias("testExercises3", "testOnly errorhandling.*ExercisesTest")
-addCommandAlias("testExercises4", "testOnly types.*ExercisesTest")
+addCommandAlias("testExercises1", "testOnly sideeffect.*ExercisesTest")
